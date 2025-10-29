@@ -1,0 +1,183 @@
+{% extends 'base/base.html' %}
+{% load translation_tags %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'pages/css/tasks.css' %}">
+{% endblock %}
+
+{% block title %}My Tasks{% endblock %}
+{% block header_title %}My Tasks{% endblock %}
+{% block content %}
+    <div class="content-wrapper">
+        <div class="profile">
+            <div class="top-block">
+                <div class="profile-image">
+                    <div class="profile-ellipse-1"></div>
+                    <div class="profile-ellipse-2"></div>
+                    <div class="profile-dot-1"></div>
+                    <div class="profile-rect-1"></div>
+                    <div class="profile-rect-2"></div>
+                </div>
+
+                <div class="profile-text">
+                    <h1>Juan Arias</h1>
+                    <p>Group: KI26-01B</p>
+                    <p>Institute: IKIT</p>
+                </div>
+            </div>
+
+            <div class="bottom-block">
+                <div class="profile-level">
+                    <p>Level: 1</p>
+                    <progress class="common-task" value="25" max="100"></progress>
+                    <progress class="urgent-task" value="45" max="100"></progress>
+                </div>
+            </div>
+        </div>
+
+        <div class="common-tasks tasks-container" id="common-header">
+    <span class="name">
+        <span class="iconify" data-icon="majesticons:clipboard-check-line" data-width="26" data-height="26"></span>
+        Common Tasks
+    </span>
+            <span class="iconify" data-icon="majesticons:plus" data-width="26" data-height="26" id="common-toggle"></span>
+        </div>
+
+        <div class="common-tasks-block" id="common-block" style="display: none;">
+            <form action="{% url 'tasks' %}">
+                <div class="tasks-field">
+
+                    <div class="task-item">
+                        <div class="left">
+                            <input type="checkbox" name="common-task-1" id="common-task1">
+                            <label for="common-task1" class="task-label">Read math lecture</label>
+                        </div>
+                        <span class="task-points">+5 exp.</span>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="left">
+                            <input type="checkbox" name="common-task-2" id="common-task2">
+                            <label for="common-task2" class="task-label">Do physics homework</label>
+                        </div>
+                        <span class="task-points">+8 exp.</span>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="left">
+                            <input type="checkbox" name="common-task-3" id="common-task3">
+                            <label for="common-task3" class="task-label">Prepare lab report</label>
+                        </div>
+                        <span class="task-points">+7 exp.</span>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="left">
+                            <input type="checkbox" name="common-task-4" id="common-task4">
+                            <label for="common-task4" class="task-label">Create project plan</label>
+                        </div>
+                        <span class="task-points">+6 exp.</span>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+        <div class="urgent-tasks tasks-container" id="urgent-header">
+            <span class="name">
+                <span class="iconify" data-icon="majesticons:clipboard-check-line" data-width="26" data-height="26"></span>
+                Tutor's Tasks
+            </span>
+            <span class="iconify" data-icon="majesticons:plus" data-width="26" data-height="26" id="urgent-toggle"></span>
+        </div>
+
+        <div class="urgent-tasks-block" id="urgent-block" style="display: none;">
+            <form action="{% url 'tasks' %}">
+                <div class="tasks-field">
+
+                    <div class="task-item">
+                        <div class="left">
+                            <input type="checkbox" name="urgent-task-1" id="urgent-task1">
+                            <label for="urgent-task1" class="task-label">Extend registration</label>
+                        </div>
+                        <span class="task-points">+10 exp.</span>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="left">
+                            <input type="checkbox" name="urgent-task-2" id="urgent-task2">
+                            <label for="urgent-task2" class="task-label">Take dormitory rules test</label>
+                        </div>
+                        <span class="task-points">+2 exp.</span>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="left">
+                            <input type="checkbox" name="urgent-task-3" id="urgent-task3">
+                            <label for="urgent-task3" class="task-label">Attend an event</label>
+                        </div>
+                        <span class="task-points">+7 exp.</span>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="left">
+                            <input type="checkbox" name="urgent-task-4" id="urgent-task4">
+                            <label for="urgent-task4" class="task-label">Move into dormitory</label>
+                        </div>
+                        <span class="task-points">+10 exp.</span>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Dropdown block for urgent tasks
+                const urgentHeader = document.getElementById('urgent-header');
+                const urgentBlock = document.getElementById('urgent-block');
+                const urgentIcon = document.getElementById('urgent-toggle');
+
+                urgentHeader.addEventListener('click', function() {
+                    if (urgentBlock.style.display === 'none') {
+                        urgentBlock.style.display = 'block';
+                        urgentIcon.setAttribute('data-icon', 'majesticons:minus');
+                    } else {
+                        urgentBlock.style.display = 'none';
+                        urgentIcon.setAttribute('data-icon', 'majesticons:plus');
+                    }
+                });
+
+                // Dropdown block for common tasks
+                const commonHeader = document.getElementById('common-header');
+                const commonBlock = document.getElementById('common-block');
+                const commonIcon = document.getElementById('common-toggle');
+
+                commonHeader.addEventListener('click', function() {
+                    if (commonBlock.style.display === 'none') {
+                        commonBlock.style.display = 'block';
+                        commonIcon.setAttribute('data-icon', 'majesticons:minus');
+                    } else {
+                        commonBlock.style.display = 'none';
+                        commonIcon.setAttribute('data-icon', 'majesticons:plus');
+                    }
+                });
+
+                // Strike through text when checkbox is clicked
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', function() {
+                        const label = this.nextElementSibling;
+                        if (this.checked) {
+                            label.style.textDecoration = 'line-through';
+                            label.style.color = '#6c757d';
+                        } else {
+                            label.style.textDecoration = 'none';
+                            label.style.color = 'inherit';
+                        }
+                    });
+                });
+            });
+        </script>
+    </div>
+{% endblock %}

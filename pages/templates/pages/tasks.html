@@ -1,0 +1,259 @@
+{% extends 'base/base.html' %}
+{% load translation_tags %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'pages/css/tasks.css' %}">
+{% endblock %}
+
+{% block title %}Мои задания{% endblock %}
+{% block header_title %}Мои задания{% endblock %}
+{% block content %}
+    <div class="content-wrapper">
+        <div class="profile">
+            <div class="top-block">
+                <div class="profile-image">
+                    <div class="profile-ellipse-1"></div>
+                    <div class="profile-ellipse-2"></div>
+                    <div class="profile-dot-1"></div>
+                    <div class="profile-rect-1"></div>
+                    <div class="profile-rect-2"></div>
+                </div>
+
+                <div class="profile-text">
+                    <h1>Хуан Ариас</h1>
+                    <p>Группа: КИ26-01Б</p>
+                    <p>Институт: ИКИТ</p>
+                </div>
+            </div>
+
+            <div class="bottom-block">
+                <div class="profile-level">
+                    <p>Уровень: 1</p>
+                    <progress class="common-task" value="25" max="100"></progress>
+                    <progress class="urgent-task" value="45" max="100"></progress>
+                </div>
+            </div>
+        </div>
+
+        {#        <div class="urgent-tasks tasks-container">#}
+
+        <div class="common-tasks tasks-container" id="common-header">
+    <span class="name">
+        <span class="iconify" data-icon="majesticons:clipboard-check-line" data-width="26" data-height="26"></span>
+        Общие задания
+    </span>
+            <span class="iconify" data-icon="majesticons:plus" data-width="26" data-height="26" id="common-toggle"></span>
+        </div>
+
+        <div class="common-tasks-block" id="common-block" style="display: none;">
+            <form action="{% url 'tasks' %}">
+                <div class="tasks-field">
+
+                    <div class="task-item">
+                        <div class="left">
+                            <input type="checkbox" name="common-task-1" id="common-task1">
+                            <label for="common-task1" class="task-label">Прочитать лекцию по математике</label>
+                        </div>
+                        <span class="task-points">+5 оп.</span>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="left">
+                            <input type="checkbox" name="common-task-2" id="common-task2">
+                            <label for="common-task2" class="task-label">Сделать домашнее задание по физике</label>
+                        </div>
+                        <span class="task-points">+8 оп.</span>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="left">
+                            <input type="checkbox" name="common-task-3" id="common-task3">
+                            <label for="common-task3" class="task-label">Подготовить отчет по лабораторной работе</label>
+                        </div>
+                        <span class="task-points">+7 оп.</span>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="left">
+                            <input type="checkbox" name="common-task-4" id="common-task4">
+                            <label for="common-task4" class="task-label">Составить план по проекту</label>
+                        </div>
+                        <span class="task-points">+6 оп.</span>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+
+
+
+
+        <div class="urgent-tasks tasks-container" id="urgent-header">
+            <span class="name">
+                <span class="iconify" data-icon="majesticons:clipboard-check-line" data-width="26" data-height="26"></span>
+                Задание от тьютора
+            </span>
+            <span class="iconify" data-icon="majesticons:plus" data-width="26" data-height="26" id="urgent-toggle"></span>
+        </div>
+
+        <div class="urgent-tasks-block" id="urgent-block" style="display: none;">
+            <form action="{% url 'tasks' %}">
+                <div class="tasks-field">
+
+                    <div class="task-item">
+                        <div class="left">
+                            <input type="checkbox" name="urgent-task-1" id="urgent-task1">
+                            <label for="urgent-task1" class="task-label">Продлить регистрацию</label>
+                        </div>
+                        <span class="task-points">+10 оп.</span>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="left">
+                            <input type="checkbox" name="urgent-task-2" id="urgent-task2">
+                            <label for="urgent-task2" class="task-label">Пройти тест на знание правил общежития</label>
+                        </div>
+                        <span class="task-points">+2 оп.</span>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="left">
+                            <input type="checkbox" name="urgent-task-3" id="urgent-task3">
+                            <label for="urgent-task3" class="task-label">Сходить на мероприятие</label>
+                        </div>
+                        <span class="task-points">+7 оп.</span>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="left">
+                            <input type="checkbox" name="urgent-task-4" id="urgent-task4">
+                            <label for="urgent-task4" class="task-label">Заселиться в общежитие</label>
+                        </div>
+                        <span class="task-points">+10 оп.</span>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Выпадающий блок для срочных заданий
+                const urgentHeader = document.getElementById('urgent-header');
+                const urgentBlock = document.getElementById('urgent-block');
+                const urgentIcon = document.getElementById('urgent-toggle');
+
+                urgentHeader.addEventListener('click', function() {
+                    if (urgentBlock.style.display === 'none') {
+                        urgentBlock.style.display = 'block';
+                        urgentIcon.setAttribute('data-icon', 'majesticons:minus');
+                    } else {
+                        urgentBlock.style.display = 'none';
+                        urgentIcon.setAttribute('data-icon', 'majesticons:plus');
+                    }
+                });
+
+                // Выпадающий блок для общих заданий
+                const commonHeader = document.getElementById('common-header');
+                const commonBlock = document.getElementById('common-block');
+                const commonIcon = document.getElementById('common-toggle');
+
+                commonHeader.addEventListener('click', function() {
+                    if (commonBlock.style.display === 'none') {
+                        commonBlock.style.display = 'block';
+                        commonIcon.setAttribute('data-icon', 'majesticons:minus');
+                    } else {
+                        commonBlock.style.display = 'none';
+                        commonIcon.setAttribute('data-icon', 'majesticons:plus');
+                    }
+                });
+
+                // Перечеркивание текста при клике на чекбокс
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', function() {
+                        const label = this.nextElementSibling;
+                        if (this.checked) {
+                            label.style.textDecoration = 'line-through';
+                            label.style.color = '#6c757d';
+                        } else {
+                            label.style.textDecoration = 'none';
+                            label.style.color = 'inherit';
+                        }
+                    });
+                });
+            });
+        </script>
+
+
+
+
+
+
+        {#<div style="max-width: 500px; margin: 0 auto;">#}
+        {#    <div style="background: #f8d7da; padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 4px solid #dc3545;">#}
+        {#        <h3>🔥 Срочные</h3>#}
+        {#        <div style="display: flex; align-items: center; margin: 10px 0;">#}
+        {#            <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">#}
+        {#            <span>взять справку из деканата</span>#}
+        {#        </div>#}
+        {#        <div style="display: flex; align-items: center; margin: 10px 0;">#}
+        {#            <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">#}
+        {#            <span>посетить занятия по Русскому языку</span>#}
+        {#        </div>#}
+        {#    </div>#}
+        {##}
+        {#    <div style="background: #fff3cd; padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 4px solid #ffc107;">#}
+        {#        <h3>📝 Текущие</h3>#}
+        {#        <div style="display: flex; align-items: center; margin: 10px 0;">#}
+        {#            <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">#}
+        {#            <span>мероприятие в ЦДН</span>#}
+        {#        </div>#}
+        {#        <div style="display: flex; align-items: center; margin: 10px 0;">#}
+        {#            <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">#}
+        {#            <span>Написать тьютору</span>#}
+        {#        </div>#}
+        {#    </div>#}
+        {##}
+        {#    <div style="background: #d4edda; padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 4px solid #28a745;">#}
+        {#        <h3>✅ Выполненные</h3>#}
+        {#        <div style="display: flex; align-items: center; margin: 10px 0;">#}
+        {#            <input type="checkbox" checked style="margin-right: 10px; transform: scale(1.2);">#}
+        {#            <span style="text-decoration: line-through; color: #6c757d;">посетить все лекции на неделе</span>#}
+        {#        </div>#}
+        {#        <div style="display: flex; align-items: center; margin: 10px 0;">#}
+        {#            <input type="checkbox" checked style="margin-right: 10px; transform: scale(1.2);">#}
+        {#            <span style="text-decoration: line-through; color: #6c757d;">сходить за учебником по русскому</span>#}
+        {#        </div>#}
+        {#        <div style="display: flex; align-items: center; margin: 10px 0;">#}
+        {#            <input type="checkbox" checked style="margin-right: 10px; transform: scale(1.2);">#}
+        {#            <span style="text-decoration: line-through; color: #6c757d;">забрать пропуск в общежитие</span>#}
+        {#        </div>#}
+        {#    </div>#}
+        {#</div>#}
+
+        <!-- Простой скрипт для перечеркивания текста при клике -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+                checkboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', function() {
+                        const span = this.nextElementSibling;
+                        if (this.checked) {
+                            span.style.textDecoration = 'line-through';
+                            span.style.color = '#6c757d';
+                        } else {
+                            span.style.textDecoration = 'none';
+                            span.style.color = 'inherit';
+                        }
+                    });
+                });
+            });
+        </script>
+    </div>
+{% endblock %}

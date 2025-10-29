@@ -1,0 +1,116 @@
+.content-wrapper {
+    padding: 0 14px;
+    --profile-image-color: #9A9998;
+    --text-color: #282828;
+}
+
+.profile-top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+/*
+    ***** Иконка *****
+*/
+
+.profile-image {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+/* 1. Основной круг */
+.profile-ellipse-1 {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 3px solid var(--profile-image-color); /* или нужный цвет */
+    border-radius: 50%;
+    opacity: 1;
+}
+
+
+/* 3. Маленький круг (возможно для глаза) */
+.profile-dot-1 {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: var(--profile-image-color);
+    border-radius: 50%;
+    top: 27px; /* -264 - (-291) = 27 */
+    left: 45px; /* 1137 - 1092 = 45 */
+    opacity: 1;
+}
+
+/* 4. Прямоугольник (возможно для тела) */
+.profile-rect-1 {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    background: var(--profile-image-color);
+    border-radius: 10px;
+    top: 62px; /* -229 - (-291) = 62 */
+    left: 36px; /* 1128 - 1092 = 36 */
+    opacity: 1;
+}
+
+/* 5. Второй прямоугольник (возможно для рта) */
+.profile-rect-2 {
+    position: absolute;
+    width: 48px;
+    height: 40px;
+    background: var(--profile-image-color);
+    border-radius: 10px;
+    top: 78px; /* -213 - (-291) = 78 */
+    left: 36px; /* 1128 - 1092 = 36 */
+    opacity: 1;
+}
+
+/*
+    ****** Блок текста ******
+*/
+.main-text {
+    color: var(--text-color);
+}
+
+.name {
+    font-size: 20px;
+}
+.position {
+    font-size: 16px;
+}
+.cabinet {
+    font-size: 16px;
+}
+.graphic {
+    margin-top: 10px;
+    margin-bottom: 8px;
+    font-size: 20px;
+    border-top: 3px solid var(--profile-image-color);
+}
+.graphic-days {
+    font-size: 16px;
+}
+.contacts {
+    margin-top: 23px;
+    font-size: 20px;
+}
+.phone {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+}
+
+.phone-number {
+    text-decoration: underline;
+}
+.vk {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+}
+
+
+

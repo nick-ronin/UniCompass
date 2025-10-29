@@ -1,0 +1,24 @@
+{% extends 'base/base.html' %}
+{% load translation_tags %}
+
+{% block title %}Главная - Unicom{% endblock %}
+
+{% block content %}
+<div style="text-align: center; padding: 20px 0;">
+    <h1>Добро пожаловать в UniCompass!</h1>
+    <p>Ваш персональный помощник в студенческой жизни</p>
+</div>
+
+<div style="max-width: 500px; margin: 0 auto;">
+    <div style="background: #ecf0f1; padding: 15px; margin: 10px 0; border-radius: 8px;">
+        <h3>📅 Календарь</h3>
+        <p>Следите за расписанием и дедлайнами</p>
+    </div>
+
+    <div style="background: #ecf0f1; padding: 15px; margin: 10px 0; border-radius: 8px;">
+        <h3>✅ Задания</h3>
+        <p>Управляйте заданиями и проектами</p>
+    </div>
+</div>
+    
+{% endblock %}

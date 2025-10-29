@@ -1,0 +1,235 @@
+.content-wrapper {
+    padding: 13px 13px;
+    --background-color: #9A9998;
+    --background-color-h: #D9D9D9;
+    --text-size-h: 24px;
+    --profile-image-color: #9A9998;
+    --text-color: #282828;
+}
+
+/*
+    ***** Иконка *****
+*/
+.profile-image {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+/* 1. Основной круг */
+.profile-ellipse-1 {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 3px solid var(--profile-image-color); /* или нужный цвет */
+    border-radius: 50%;
+    opacity: 1;
+}
+
+
+/* 3. Маленький круг (возможно для глаза) */
+.profile-dot-1 {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: var(--profile-image-color);
+    border-radius: 50%;
+    top: 27px; /* -264 - (-291) = 27 */
+    left: 45px; /* 1137 - 1092 = 45 */
+    opacity: 1;
+}
+
+/* 4. Прямоугольник (возможно для тела) */
+.profile-rect-1 {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    background: var(--profile-image-color);
+    border-radius: 10px;
+    top: 62px; /* -229 - (-291) = 62 */
+    left: 36px; /* 1128 - 1092 = 36 */
+    opacity: 1;
+}
+
+/* 5. Второй прямоугольник (возможно для рта) */
+.profile-rect-2 {
+    position: absolute;
+    width: 48px;
+    height: 40px;
+    background: var(--profile-image-color);
+    border-radius: 10px;
+    top: 78px; /* -213 - (-291) = 78 */
+    left: 36px; /* 1128 - 1092 = 36 */
+    opacity: 1;
+}
+
+/*
+       ********  Блок профиля  *********
+*/
+
+.profile {
+    padding: 18px;
+    border: 5px solid var(--background-color);
+    border-radius: 10px;
+}
+
+.top-block {
+    display: flex;
+    gap: 18px;
+}
+
+.tasks-container {
+    margin-top: 12px;
+    background-color: var(--background-color);
+    border-radius: 10px;
+    padding-top: 4px;
+}
+
+.bottom-block {
+    padding-top: 14px;
+}
+.tasks-h {
+    margin-left: 4px;
+    margin-right: 4px;
+    border-radius: 8px;
+    background: var(--background-color-h);
+    font-size: var(--text-size-h);
+    font-weight: normal;
+    padding-left: 8px;
+}
+.common-task, .urgent-task {
+    display: block;
+    width: 100%;
+}
+/*
+ *********  Уровень в профиле   **********
+*/
+.profile-level p{
+    text-align: right;
+}
+
+.profile-level {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.profile-level p {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* Общие стили для всех progress */
+.profile-level progress {
+    width: 100%;           /* растягиваем на всю ширину родителя */
+    height: 12px;          /* можно увеличить, чтобы было видно */
+    border-radius: 10px;   /* скругленные углы */
+    border: 2px solid var(--background-color); /* рамка вокруг прогресс-бара */
+    overflow: hidden;
+    appearance: none;       /* убираем стандартный стиль */
+    background-color: transparent; /* фон совпадает с фоном контейнера */
+}
+
+/* Chrome, Safari, Edge */
+.profile-level progress::-webkit-progress-bar {
+    background-color: transparent; /* фон пустой части */
+}
+
+.profile-level progress.common-task::-webkit-progress-value {
+    background-color: #E39109; /* цвет заполненной части */
+}
+
+.profile-level progress.urgent-task::-webkit-progress-value {
+    background-color: #C44536;
+}
+
+/* Firefox */
+.profile-level progress.common-task::-moz-progress-bar {
+    background-color: #E39109;
+}
+
+.profile-level progress.urgent-task::-moz-progress-bar {
+    background-color: #C44536;
+}
+
+/*
+ **********     Блок заданий       *********
+*/
+
+.tasks-container {
+    display: flex;              /* включаем flex */
+    justify-content: space-between; /* растягиваем пространство между названием и плюсом */
+    align-items: center;        /* вертикальное выравнивание по центру */
+    padding: 27px 12px;
+    background-color: var(--background-color);
+    border-radius: 10px;
+    gap: 8px;                   /* отступ между иконкой и текстом */
+}
+
+.tasks-container .name {
+    display: flex;              /* иконка + текст тоже flex */
+    align-items: center;        /* выравнивание по центру по вертикали */
+    gap: 8px;                   /* расстояние между иконкой и текстом */
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.common-tasks {
+    background: #E39109;
+}
+.urgent-tasks {
+    background: #C44536;
+}
+.urgent-tasks-block {
+    margin-top: 14px;
+    border: 5px solid #C44536;
+    border-radius: 10px;
+    padding: 27px 25px;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between; /* слева чекбокс+текст, справа очки */
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.task-item .left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.task-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+.task-item .task-label {
+    display: inline-block;
+}
+
+.task-item .task-points {
+    font-weight: 500;
+}
+
+/* Для плавного раскрытия блока */
+.urgent-tasks-block {
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
+}
+
+.common-tasks-block {
+    margin-top: 14px;
+    border: 5px solid #E39109;
+    border-radius: 10px;
+    padding: 27px 25px;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
+}
+
+
+
+

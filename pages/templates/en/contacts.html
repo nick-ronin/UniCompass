@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+{% load translation_tags %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'pages/css/contacts.css' %}">
+{% endblock %}
+
+{% block title %}Contacts - Unicom{% endblock %}
+{% block header_title %}Contacts{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="profile-image">
+            <div class="profile-ellipse-1"></div>
+            <div class="profile-ellipse-2"></div>
+            <div class="profile-dot-1"></div>
+            <div class="profile-rect-1"></div>
+            <div class="profile-rect-2"></div>
+        </div>
+
+        <div class="main-text">
+            <p class="name">Mikhail Petrovich Zubenko</p>
+            <p class="position">Tutor OSFU No. 31</p>
+            <p class="cabinet"><a href="">Pushkin St., 1 b1</a>, office 1-02</p>
+
+            <p class="graphic">Working Hours:</p>
+            <p class="graphic-days">
+                Mon-Fri: 09:00-17:00
+                Sat-Sun: day off
+            </p>
+
+            <p class="contacts">Contacts:</p>
+            <div class="phone">
+                <span>Phone Number:</span>
+                 <a href="tel:+71234567890" class="phone-number">+7 (123) 456-78-90</a>
+            </div>
+            
+            <div class="vk">
+                <span>VKontakte Page:</span>
+                <a href="" class="vk-link">vk.com/zub_mich</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

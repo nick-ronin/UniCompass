@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+{% load translation_tags %}
+
+{% block title %}MFC - Unicom{% endblock %}
+
+{% block content %}
+<div style="max-width: 500px; margin: 0 auto; padding: 20px 0;">
+    <h1>📍 Multifunctional Center (MFC)</h1>
+    
+    <div class="content-block">
+        <h3>🏢 About MFC</h3>
+        <p>The Multifunctional Center provides state and municipal services in one place.</p>
+    </div>
+
+    <div class="content-block">
+        <h3>📞 Contacts</h3>
+        <p><strong>Address:</strong> Studencheskaya St., 15</p>
+        <p><a href="https://2gis.ru/krasnoyarsk/search/%D0%9C%D0%A4%D0%A6%20(%D0%BC%D0%BD%D0%BE%D0%B3%D0%BE%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5%20%D1%86%D0%B5%D0%BD%D1%82%D1%80%D1%8B)/rubricId/53505/firm/70000001022735071?m=92.797601%2C56.019562%2F15.48" style="color: #1976d2; text-decoration: none;"> MAP</a></p>
+        <p><strong>Phone:</strong> +7 (495) 123-45-67</p>
+        <p><strong>Email:</strong> mfc@university.ru</p>
+    </div>
+
+    <div class="content-block">
+        <h3>🕒 Working Hours</h3>
+        <p><strong>Mon-Fri:</strong> 9:00 - 18:00</p>
+        <p><strong>Sat:</strong> 10:00 - 16:00</p>
+        <p><strong>Sun:</strong> day off</p>
+    </div>
+
+    <div class="content-block">
+        <h3>✅ Provided Services</h3>
+        <p>• Study certificates</p>
+        <p>• Social benefit registration</p>
+        <p>• Dormitory matters</p>
+        <p>• Academic certificates</p>
+        <p>• Document consultations</p>
+    </div>
+
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'calendar' %}" style="display: inline-block; padding: 10px 20px; background: #3498db; color: white; text-decoration: none; border-radius: 5px;">← Back to calendar</a>
+    </div>
+</div>
+{% endblock %}
