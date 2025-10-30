@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'Cera Pro';
-  src: url('/static/fonts/CeraPro-Refular.ttf') format('ttf');
+  src: url('/static/fonts/CeraPro-Refular.ttf') format('ttf'),
+  url('/static/fonts/CeraPro-Refular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
