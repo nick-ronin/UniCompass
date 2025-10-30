@@ -215,12 +215,6 @@
     font-weight: 500;
 }
 
-/* Для плавного раскрытия блока */
-.urgent-tasks-block {
-    transition: max-height 0.3s ease, opacity 0.3s ease;
-    overflow: hidden;
-}
-
 .common-tasks-block {
     margin-top: 14px;
     border: 5px solid #E39109;
@@ -230,6 +224,10 @@
     overflow: hidden;
 }
 
+.hidden {
+    display: none;
+}
 
-
-
+.visible {
+    display: block;
+}

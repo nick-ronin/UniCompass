@@ -1,7 +1,6 @@
 .content-wrapper {
     padding: 21px 23px;
     --text-size-h: 24px;
-    --backgrounds-color: #9A9998;
 }
 
 /* Заголовок и кнопки */
@@ -18,8 +17,8 @@
 }
 
 .date-buttons > a {
-    background: var(--backgrounds-color);
-    color: #000;
+    background: #C44536;
+    color: #EDDDD4;
     padding: 6px 10px;       /* внутренние отступы */
     border-radius: 6px;      /* скругленные углы */
     text-decoration: none;   /* убираем подчеркивание ссылки */
