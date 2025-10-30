@@ -67,13 +67,6 @@
             </div>
         </div>
 
-        <div class="search">
-            <input type="text" class="search-field" placeholder="Спросить у Белки...">
-            <button type="button" id="search-button">
-                <span class="iconify" data-icon="majesticons:arrow-up-line" data-width="28" data-height="28"></span>
-            </button>
-        </div>
-
         <script>
             document.querySelectorAll('.accordion-header').forEach(header => {
                 header.addEventListener('click', () => {
@@ -82,12 +75,6 @@
                     // Переключаем активный класс
                     item.classList.toggle('active');
                 });
-            });
-
-            const searchButton = document.getElementById('search-button');
-
-            searchButton.addEventListener('click', () => {
-                alert("Уведомление: еще в разработке");
             });
         </script>
         

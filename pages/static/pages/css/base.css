@@ -1,13 +1,21 @@
+@font-face {
+  font-family: 'Cera Pro';
+  src: url('/static/fonts/CeraPro-Refular.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-size: 16px;
+    font-family: 'Cera Pro', sans-serif;
 }
 
 body {
     font-family: "Poppins", Arial, sans-serif;
-    background: #D9D9D9;
+    background: #EDDDD4;
     padding-bottom: 70px; /* Место для фиксированной навигации */
     min-height: 100vh;
 }
@@ -17,7 +25,7 @@ body {
 */
 
 .navbar-top {
-    background: #9A9998;
+    background: #197278;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -38,9 +46,9 @@ body {
     width: 36px;
     height: 36px;
     text-decoration: none;
-    color: #555;
+    color: #197278;
     transition: transform 0.2s ease, color 0.2s ease;
-    background: #D9D9D9;
+    background: #EDDDD4;
     border-radius: 20px;
 }
 
@@ -52,7 +60,7 @@ body {
 .navbar-top .header-title {
     font-size: 1.4em;
     font-weight: 100;
-    color: #282828;
+    color: #EDDDD4;
 }
 
 
@@ -61,7 +69,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: #D9D9D9;
+    background: #EDDDD4;
     padding: 5px 10px;
     border-radius: 10px;
     position: relative;
@@ -70,7 +78,7 @@ body {
 
 /* Делаем иконку аккуратной */
 .language-switcher .iconify {
-    color: #000;
+    color: #C44536;
     flex-shrink: 0;
     transition: color 0.2s ease;
 }
@@ -81,7 +89,7 @@ body {
 
 /* Селект превращаем в "чистый" элемент */
 .language-switcher select {
-    background: #D9D9D9;
+    background: #EDDDD4;
     border: none;
     font-family: 'Poppins', sans-serif;
     font-size: 0.875em;
@@ -91,11 +99,11 @@ body {
 }
 
 .language-switcher:hover {
-    background: rgba(255, 255, 255, 0.5);
+    background: #bdb0a8;
 }
 
 .language-switcher:hover .iconify {
-    color: #333;
+    color: #A1392D;
 }
 
 /*
@@ -117,10 +125,10 @@ body {
     text-align: center;
     display: block;
     border-radius: 10px;
-    background: #9A9998;
+    background: #197278;
+    color: #EDDDD4;
     padding: 12px 12px; /* меньшие отступы */
     text-decoration: none;
-    color: inherit;
     min-width: 0; /* чтобы текст обрезался если нужно */
 }
 

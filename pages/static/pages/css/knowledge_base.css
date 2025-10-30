@@ -20,7 +20,6 @@
     align-items: center;
     gap: 8px;
     cursor: pointer;
-    background: #e2e3e5;
     padding: 12px;
     border-radius: 8px;
     margin-bottom: 5px;
@@ -36,6 +35,10 @@
 /* Поворот стрелки при открытии */
 .accordion-item.active .address-arrow {
     transform: rotate(90deg);
+}
+
+.accordion-item.active .accordion-header {
+    color: #C44536;
 }
 
 /* Контент скрыт по умолчанию */

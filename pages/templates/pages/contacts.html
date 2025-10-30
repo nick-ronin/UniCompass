@@ -1,71 +1,44 @@
-{% extends 'base/base.html' %}
-{% load translation_tags %}
-{% load static %}
-
+{% extends 'base/base.html' %} {% load translation_tags %} {% load static %} 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'pages/css/contacts.css' %}">
-{% endblock %}
-
-{% block title %}Контакты - Unicom{% endblock %}
-{% block header_title %}Контакты{% endblock %}
-
+<link rel="stylesheet" href="{% static 'pages/css/contacts.css' %}" />
+{% endblock %} 
+{% block title %}Контакты - Unicom{% endblock %} 
+{% block header_title %}Контакты{% endblock %} 
 {% block content %}
-    <div class="content-wrapper">
-        <div class="profile-top">
-            <div class="profile-image">
-                <div class="profile-ellipse-1"></div>
-                <div class="profile-ellipse-2"></div>
-                <div class="profile-dot-1"></div>
-                <div class="profile-rect-1"></div>
-                <div class="profile-rect-2"></div>
-            </div>
-            <div class="profile-info">
-                <p class="name">Зубенко Михаил Петрович</p>
-                <p class="position">Тьютор ОСФУ №31</p>
-                <p class="cabinet"><a href="">ул. Пушкина, 1 к1</a>, кабинет 1-02</p>
-            </div>
-        </div>
-        
-        <div class="main-text">
-            <p class="graphic">График работы:</p>
-            <p class="graphic-days">
-                пн-пт: 09:00-17:00
-            </p>
-            <p>
-                сб-вс: выходной
-            </p>
+<div class="content-wrapper">
+  <div class="profile-top">
+    <div class="profile-image">
+      <div class="profile-ellipse-1"></div>
+      <div class="profile-ellipse-2"></div>
+      <div class="profile-dot-1"></div>
+      <div class="profile-rect-1"></div>
+      <div class="profile-rect-2"></div>
+    </div>
+    <div class="profile-info">
+      <p class="name">Зубенко Михаил Петрович</p>
+      <p class="position">Тьютор ОСФУ №31</p>
+      <p class="cabinet"><a href="">ул. Пушкина, 1 к1</a>, кабинет 1-02</p>
+    </div>
+  </div>
 
-            <p class="contacts">Контакты:</p>
-            <div class="phone">
-                <span>Номер телефона:</span>
-                 <a href="tel:+71234567890" class="phone-number">+7 (123) 456-78-90</a>
-            </div>
-            
-            <div class="vk">
-                <span>Страница ВКонтакте:</span>
-                <a href="" class="vk-link">vk.com/zub_mich</a>
-            </div>
-        </div>
+  <div class="main-text">
+    <hr class="main__divider" />
+    <div class="schedule-container">
+      <p class="graphic">График работы:</p>
+      <p class="graphic-days">пн-пт: 09:00-17:00</p>
+      <p class="graphic-days">сб-вс: выходной</p>
+    </div>
+    <hr class="main__divider" />
+    <p class="contacts">Контакты:</p>
+    <div class="phone">
+      <span>Номер телефона:</span>
+      <a href="tel:+71234567890" class="phone-number">+7 (123) 456-78-90</a>
     </div>
 
-{#<div style="max-width: 500px; margin: 0 auto;">#}
-{#    <div style="background: #d1ecf1; padding: 20px; margin: 10px 0; border-radius: 8px; text-align: center;">#}
-{#        <h3>📞 Техническая поддержка</h3>#}
-{#        <p>Email: support@unicompass.ru</p>#}
-{#        <p>Телефон: +7 (999) 123-45-67</p>#}
-{#        <p>Часы работы: 9:00 - 18:00</p>#}
-{#    </div>#}
-{##}
-{#    <div style="background: #d4edda; padding: 20px; margin: 10px 0; border-radius: 8px; text-align: center;">#}
-{#        <h3>👨‍🏫 Академические консультанты</h3>#}
-{#        <p>Email: advisors@unicompass.ru</p>#}
-{#        <p>По вопросам учебного процесса</p>#}
-{#    </div>#}
-{##}
-{#    <div style="background: #fff3cd; padding: 20px; margin: 10px 0; border-radius: 8px; text-align: center;">#}
-{#        <h3>💼 Сотрудничество</h3>#}
-{#        <p>Email: partnership@unicompass.ru</p>#}
-{#        <p>Для образовательных учреждений</p>#}
-{#    </div>#}
-{#</div>#}
+    <div class="vk">
+      <span>Страница ВКонтакте:</span>
+      <a href="" class="vk-link">vk.com/zub_mich</a>
+    </div>
+  </div>
+</div>
 {% endblock %}
