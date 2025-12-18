@@ -82,9 +82,9 @@ WSGI_APPLICATION = 'unic.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
 DATABASES = {
-    'default': dj_database_url.config(
+    'default': dj_database_url.parse(
+        "postgresql://admin:bRkspymhrZGSjTNHwRWzpInWQgG1ryFV@dpg-d51pa48gjchc73epj10g-a/unicompass",
         conn_max_age=600,
         ssl_require=True
     )
