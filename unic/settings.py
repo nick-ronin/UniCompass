@@ -80,18 +80,11 @@ WSGI_APPLICATION = 'unic.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'UniCompass',  
-        'USER': 'postgres',
-        #'PASSWORD': '123',
-        'PASSWORD': '1',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-        'OPTIONS': {
-            'client_encoding': 'UTF8',  # ← ДОБАВЬ ЭТУ СТРОКУ
-        }
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get("postgresql://admin:bRkspymhrZGSjTNHwRWzpInWQgG1ryFV@dpg-d51pa48gjchc73epj10g-a/unicompass"),
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
 
 
