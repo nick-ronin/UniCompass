@@ -30,6 +30,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "uni-compass.ru",
     "www.uni-compass.ru",
+    "unicompass-w6t0.onrender.com",
 ]
 
 
@@ -84,7 +85,7 @@ WSGI_APPLICATION = 'unic.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get("postgresql://admin:bRkspymhrZGSjTNHwRWzpInWQgG1ryFV@dpg-d51pa48gjchc73epj10g-a/unicompass"),
+        default="postgresql://admin:bRkspymhrZGSjTNHwRWzpInWQgG1ryFV@dpg-d51pa48gjchc73epj10g-a/unicompass",
         conn_max_age=600,
         ssl_require=True
     )
