@@ -85,7 +85,6 @@ WSGI_APPLICATION = 'unic.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default="postgresql://admin:bRkspymhrZGSjTNHwRWzpInWQgG1ryFV@dpg-d51pa48gjchc73epj10g-a/unicompass",
         conn_max_age=600,
         ssl_require=True
     )
