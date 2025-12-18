@@ -1,0 +1,38 @@
+{% extends 'base/base_login_register.html' %}
+{% load static %}
+
+{% block title %}Войти на сайт{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<body class="login__body">
+    <div class="login__container">
+      <div class="login__btn-container">
+        <button class="switch-language login-register__button">
+        <img src="{% static 'img/iconify-icons/mynaui_globe.svg' %}" alt="language">Русский
+      </button>
+      </div>
+
+      <div class="login__container-main">
+        <p class="login__title">Войти на сайт</p>
+
+        <form class="login__form" method="post">
+          {% csrf_token %}
+          <label class="login__label" for="email">Электронная почта:</label><br>
+          <input class="login__field" type="email" id="email" name="email"><br>
+          <label class="login__label" for="password">Пароль:</label><br>
+          <input class="login__field" type="password" id="password" name="password"><br>
+          <input class="login__submit" type="submit" value="Войти">
+        </form>
+
+        <div class="login__container-links">
+          <a class="login-register__link" href="{% url 'register' %}">Зарегистрироваться</a>
+          <a class="login-register__link" href="#">Забыли пароль?</a>
+        </div>
+      </div>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,147 @@
+{% extends 'base/base_main_admin.html' %}
+{% load static %}
+
+{% block title %}Все задачи{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/all_tasks.css' %}">
+{% endblock %}
+
+{% block page-name %}Все задачи{% endblock %}
+
+{% block content %}
+    <div class="all-tasks__container">
+        <div class="all-tasks__tasks-list">
+            {% for task in tasks %}
+            <div class="all-tasks__task-block">
+                <div class="all-tasks__task-header">
+                    <h3 class="all-tasks__task-title">{{ task.title }}</h3>
+                    <div class="all-tasks__meta">
+                        <span class="all-tasks__task-type">{{ task.type }}</span>
+                        <button class="all-tasks__assign-one" data-task-id="{{ task.pk }}">Назначить</button>
+                    </div>
+                </div>
+                <p class="all-tasks__task-description">{{ task.description }}</p>
+            </div>
+            {% empty %}
+            <p class="all-tasks__empty-message">Задач не найдено</p>
+            {% endfor %}
+        </div>
+
+        <button class="all-tasks__create-btn" id="create-task-btn">+</button>
+        <button class="all-tasks__assign-btn" id="assign-task-btn">Назначить задачу</button>
+    </div>
+
+    <!-- Modal for creating task -->
+    <div class="all-tasks__modal" id="create-task-modal">
+        <div class="all-tasks__modal-overlay" id="modal-overlay"></div>
+        <div class="all-tasks__modal-content">
+            <div class="all-tasks__modal-header">
+                <h2 class="all-tasks__modal-title">Новая задача</h2>
+                <button class="all-tasks__modal-close" id="close-modal-btn">
+                    <img src="{% static 'img/iconify-icons/material-symbols_close-small-outline-rounded.svg' %}" alt="close">
+                </button>
+            </div>
+            <form class="all-tasks__modal-form" method="post" action="#">
+                {% csrf_token %}
+                <div class="all-tasks__form-group">
+                    <label for="task_title" class="all-tasks__form-label">Название:</label>
+                    <input type="text" id="task_title" name="title" class="all-tasks__form-field" required>
+                </div>
+                <div class="all-tasks__form-group">
+                    <label for="task_description" class="all-tasks__form-label">Описание:</label>
+                    <textarea id="task_description" name="description" class="all-tasks__form-field all-tasks__form-textarea" required></textarea>
+                </div>
+                <div class="all-tasks__form-group">
+                    <label for="task_type" class="all-tasks__form-label">Тип:</label>
+                    <input type="text" id="task_type" name="type" class="all-tasks__form-field" required>
+                </div>
+                <div class="all-tasks__form-group all-tasks__form-checkbox-group">
+                    <label class="all-tasks__form-checkbox-label">
+                        <input type="checkbox" id="assign_all" name="assign_all" class="all-tasks__form-checkbox">
+                        <div class="all-tasks__form-checkbox-box"></div>
+                        <span>Назначить всем текущим студентам</span>
+                    </label>
+                </div>
+                <button type="submit" class="all-tasks__modal-submit">Создать задачу</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const createBtn = document.getElementById('create-task-btn');
+        const modal = document.getElementById('create-task-modal');
+        const closeBtn = document.getElementById('close-modal-btn');
+        const overlay = document.getElementById('modal-overlay');
+
+        createBtn.addEventListener('click', function() {
+            modal.classList.add('active');
+        });
+
+        closeBtn.addEventListener('click', function() {
+            modal.classList.remove('active');
+        });
+
+        overlay.addEventListener('click', function() {
+            modal.classList.remove('active');
+        });
+    });
+</script>
+<script>
+        // Assign modal (admin) - load modal body via GET so selects are filled server-side
+        document.addEventListener('DOMContentLoaded', function() {
+            const assignBtn = document.getElementById('assign-task-btn');
+            let wrapper = null;
+
+            assignBtn.addEventListener('click', function() {
+                // fetch modal HTML from assign_task view (GET)
+                fetch('{% url "assign_task" %}').then(r => r.text()).then(html => {
+                    // create wrapper
+                    wrapper = document.createElement('div');
+                    wrapper.id = 'assign-task-modal';
+                    wrapper.style.position = 'fixed';
+                    wrapper.style.inset = 0;
+                    wrapper.style.display = 'flex';
+                    wrapper.style.alignItems = 'center';
+                    wrapper.style.justifyContent = 'center';
+                    wrapper.style.zIndex = 2000;
+                    wrapper.innerHTML = html;
+                    document.body.appendChild(wrapper);
+
+                    // attach close handlers
+                    const closeBtn = wrapper.querySelector('button[onclick="closeAssignModal()"], button#assign-cancel');
+                    const backdrop = wrapper.querySelector('.assign-modal-backdrop');
+                    if (closeBtn) closeBtn.addEventListener('click', () => wrapper.remove());
+                    if (backdrop) backdrop.addEventListener('click', () => wrapper.remove());
+                });
+            });
+
+            // Attach per-task assign buttons
+            document.querySelectorAll('.all-tasks__assign-one').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const taskId = this.dataset.taskId;
+                    fetch('{% url "assign_task" %}?task_id=' + encodeURIComponent(taskId)).then(r => r.text()).then(html => {
+                        // create wrapper
+                        const w = document.createElement('div');
+                        w.id = 'assign-task-modal';
+                        w.style.position = 'fixed';
+                        w.style.inset = 0;
+                        w.style.display = 'flex';
+                        w.style.alignItems = 'center';
+                        w.style.justifyContent = 'center';
+                        w.style.zIndex = 2000;
+                        w.innerHTML = html;
+                        document.body.appendChild(w);
+
+                        const closeBtn = w.querySelector('button#assign-cancel');
+                        const cancelBtn = w.querySelector('button#assign-cancel');
+                        if (closeBtn) closeBtn.addEventListener('click', () => w.remove());
+                    });
+                });
+            });
+        });
+</script>
+{% endblock %}

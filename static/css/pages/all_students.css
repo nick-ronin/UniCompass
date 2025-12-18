@@ -1,0 +1,89 @@
+.all-students__container {
+    padding: 2rem 2rem 2rem 100px;
+    font-family: 'Cera Pro';
+    margin-left: 80px;
+}
+
+.all-students__table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--color-white);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.all-students__header-row {
+    background-color: var(--color-cyan);
+    color: var(--color-white);
+}
+
+.all-students__header-cell {
+    padding: 1rem;
+    text-align: left;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border-bottom: 2px solid var(--color-cyan);
+}
+
+.all-students__body-row {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.2s ease;
+}
+
+.all-students__body-row:hover {
+    background-color: #f9f9f9;
+}
+
+.all-students__cell {
+    padding: 1rem;
+    font-size: 1rem;
+    color: var(--color-text, #333);
+}
+
+.all-students__status {
+    text-align: center;
+    color: #999;
+}
+
+.all-students__link {
+    color: var(--color-cyan);
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.all-students__link:hover {
+    color: var(--color-red-orange);
+    text-decoration: underline;
+}
+
+.all-students__checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: not-allowed;
+    accent-color: var(--color-cyan);
+}
+
+.all-students__action-btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-cyan);
+    color: var(--color-white);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.all-students__action-btn:hover {
+    background-color: var(--color-red-orange);
+}
+
+.all-students__empty-message {
+    text-align: center;
+    padding: 2rem;
+    color: #999;
+    font-size: 1.1rem;
+}

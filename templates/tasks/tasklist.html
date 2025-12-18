@@ -1,0 +1,83 @@
+{% extends 'base/base_main_student.html' %}
+{% load static %}
+
+{% block title %}Задачи{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/tasklist.css' %}">
+{% endblock %}
+
+{% block page-name %}Задачи{% endblock %}
+
+{% block content %}
+    <section class="tasklist__main-container">
+        <div class="tasklist__top-row">
+            <div class="tasklist__left-col">
+                <div class="tasklist__student-block">
+                    <div class="tasklist__student-card">
+                        <img src="{% static 'img/NoAvatarDefault.svg' %}" class="tasklist__student-card-img" alt="avatar" />
+                        <div class="tasklist__student-card-info">
+                            <h3 class="tasklist__student-name">{{ student.first_name }} {{ student.surname }}</h3>
+                            <p class="tasklist__student-info"><span class="tasklist__label">Группа:</span> {{ student.group }}</p>
+                            <p class="tasklist__student-info"><span class="tasklist__label">Институт:</span> {{ student.institute }}</p>
+                            <p class="tasklist__student-info"><span class="tasklist__label">Курс:</span> {{ student.course }}</p>
+                        </div>
+                    </div>
+                    <div class="tasklist__container-buttons">
+                        <button class="tasklist__button">Обновить статусы задач</button>
+                        <button class="tasklist__button">Показать невыполненные</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tasklist__right-col">
+                <div class="tasklist__urgent-block">
+                    <p class="tasklist__urgent-title">Срочные задачи</p>
+                    <div class="tasklist__urgent-list">
+                        {% if urgent_tasks %}
+                            {% for st in urgent_tasks %}
+                            <div class="tasklist__card tasklist__card_{{ st.status }}">
+                                <p class="tasklist__card-title">{{ st.id_gen_task.title }}</p>
+                                <p class="tasklist__card-description">{{ st.id_gen_task.description }}</p>
+                                <p class="tasklist__card-deadline">Дедлайн: {{ st.deadline|default:st.id_gen_task.deadline|date:"d.m" }}</p>
+
+                                <select class="tasklist__card-status">
+                                    <option value="not_done" {% if st.status == "not_done" %}selected{% endif %}>Не выполнено</option>
+                                    <option value="in_progress" {% if st.status == "in_progress" %}selected{% endif %}>В процессе</option>
+                                    <option value="done" {% if st.status == "done" %}selected{% endif %}>Выполнено</option>
+                                </select>
+
+                                <input class="tasklist__card-notes" type="text" value="{{ st.notes|default:'' }}" placeholder="Заметки">
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <p class="tasklist__no-urgent">Срочных задач нет</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tasklist__tasks-grid">
+            {% if other_tasks %}
+                {% for st in other_tasks %}
+                <div class="tasklist__card tasklist__card_{{ st.status }}">
+                    <p class="tasklist__card-title">{{ st.id_gen_task.title }}</p>
+                    <p class="tasklist__card-description">{{ st.id_gen_task.description }}</p>
+                    <p class="tasklist__card-deadline">Дедлайн: {{ st.deadline|default:st.id_gen_task.deadline|date:"d.m" }}</p>
+
+                    <select class="tasklist__card-status">
+                        <option value="not_done" {% if st.status == "not_done" %}selected{% endif %}>Не выполнено</option>
+                        <option value="in_progress" {% if st.status == "in_progress" %}selected{% endif %}>В процессе</option>
+                        <option value="done" {% if st.status == "done" %}selected{% endif %}>Выполнено</option>
+                    </select>
+
+                    <input class="tasklist__card-notes" type="text" value="{{ st.notes|default:'' }}" placeholder="Заметки">
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="tasklist__no-other">Нет задач</p>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

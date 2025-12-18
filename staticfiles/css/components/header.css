@@ -1,0 +1,124 @@
+body {
+    margin: 0;
+}
+
+.header__main {
+    background-color: var(--color-cyan);
+    display: flex;
+    justify-content: space-between;
+    max-height: 96px;
+    height: auto;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header__container-info {
+    display: flex;
+    justify-items: space-between;
+    gap: 6rem;
+    align-items: center;
+    padding-left: 6rem;
+}
+
+.header__logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.header__logo {
+    padding: 0.5rem;
+    width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.header__logo:hover {
+    opacity: 0.8;
+}
+
+.header__tools {
+    display: flex;
+    justify-items: space-between;
+    gap: 6rem;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 6rem;
+}
+
+.header__page-name {
+    color: var(--color-white);
+    font-size: 2.25rem;
+    font-family: 'Cera Pro';
+}
+
+.header__search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #777;
+    pointer-events: none;
+}
+
+.header__search {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.header__search-btn {
+    position: absolute;
+    right: 3rem;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.header__search-icon {
+    color: var(--color-field);
+    font-size: 1.5rem;
+    width: 24px;
+    height: 24px;
+}
+
+.header__search-field {
+    border: 3px solid var(--color-field);
+    border-radius: 1rem;
+    color: var(--color-white);
+    background-color: var(--color-cyan);
+    padding: 0.75rem 2rem 0.75rem 0.75rem;
+    font-size: 1.5rem;
+    font-family: 'Cera Pro';
+}
+
+.header__search-field::placeholder {
+    color: var(--color-field);
+}
+
+.header__button {
+    background: var(--color-red-orange);
+    background: linear-gradient(24deg,var(--color-red-orange) 0%, var(--color-yellow) 100%);
+    border: none;
+    border-radius: 1rem;
+    padding: 0.75rem;
+    color: var(--color-white);
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Cera Pro';
+}

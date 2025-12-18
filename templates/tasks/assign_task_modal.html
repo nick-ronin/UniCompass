@@ -1,0 +1,150 @@
+{% load static %}
+
+<div class="assign-modal-backdrop"></div>
+<div class="assign-modal" role="dialog" aria-modal="true">
+  <form method="post" action="{% url 'assign_task' %}">
+    {% csrf_token %}
+    <h3>Назначить задачу</h3>
+
+    <!-- Задача -->
+    <label for="task_select">Задача</label>
+    <select id="task_select" name="task_id" required>
+      {% for t in tasks %}
+      <option value="{{ t.pk }}" {% if selected_task_id == t.pk %}selected{% endif %}>{{ t.title }}</option>
+      {% endfor %}
+    </select>
+
+    <!-- Кому -->
+    <label for="assign_type_select">Кому назначить</label>
+    <select id="assign_type_select" name="assign_type">
+      <option value="all">Всем студентам</option>
+      <option value="group">По группе</option>
+      <option value="country">По гражданству</option>
+      <option value="student">Конкретный студент</option>
+    </select>
+
+    <!-- Группа -->
+    <div class="assign-dependent" data-type="group" style="display:none;">
+      <label for="group_select">Группа</label>
+      <select id="group_select" name="value" disabled>
+        <option value="">-- выберите группу --</option>
+        {% for g in groups %}
+        <option value="{{ g }}">{{ g }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Страна -->
+    <div class="assign-dependent" data-type="country" style="display:none;">
+      <label for="country_select">Гражданство</label>
+      <select id="country_select" name="value" disabled>
+        <option value="">-- выберите страну --</option>
+        {% for c in countries %}
+        <option value="{{ c }}">{{ c }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Студент -->
+    <div class="assign-dependent" data-type="student" style="display:none;">
+      <label for="student_input">Выберите студента</label>
+      <input
+        id="student_input"
+        name="value"
+        list="students_list"
+        placeholder="Начните вводить имя..."
+        disabled
+        autocomplete="off">
+
+      <datalist id="students_list">
+        {% for s in students %}
+        <option data-id="{{ s.id_user }}" value="{{ s.surname }} {{ s.first_name }} ({{ s.group }})"></option>
+        {% endfor %}
+      </datalist>
+
+      <input type="hidden" id="student_hidden_id" name="value_id">
+    </div>
+
+    <div style="margin-top:1rem; display:flex; gap:0.75rem; justify-content:flex-end;">
+      <button type="submit" class="assign-submit">Назначить</button>
+      <button type="button" id="assign-cancel" class="assign-cancel">Отмена</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const typeSelect = document.getElementById('assign_type_select');
+    const dependents = Array.from(document.querySelectorAll('.assign-dependent'));
+
+    if (!typeSelect) {
+      console.warn('assign_type_select not found');
+      return;
+    }
+
+    function hideAllDependents() {
+      dependents.forEach(block => {
+        const control = block.querySelector('select, input');
+        block.style.display = 'none';
+        if (control) {
+          control.disabled = true;
+          // очистим значение безопасно
+          if (control.tagName === 'SELECT') control.selectedIndex = 0;
+          else control.value = '';
+        }
+      });
+    }
+
+    function showDependentFor(type) {
+      // Сначала прячем всех
+      hideAllDependents();
+
+      // Находим нужный блок
+      const block = document.querySelector('.assign-dependent[data-type="' + type + '"]');
+      if (!block) return;
+      const control = block.querySelector('select, input');
+      block.style.display = '';
+      if (control) control.disabled = false;
+    }
+
+    // Инициализация (если есть предвыбранный тип)
+    showDependentFor(typeSelect.value);
+
+    // Слушаем изменения
+    typeSelect.addEventListener('change', function () {
+      showDependentFor(this.value);
+    });
+
+    // Дatalist -> hidden id mapping для студента
+    const studentInput = document.getElementById('student_input');
+    const studentHidden = document.getElementById('student_hidden_id');
+    if (studentInput && studentHidden) {
+      studentInput.addEventListener('input', function () {
+        const val = this.value;
+        let found = '';
+        document.querySelectorAll('#students_list option').forEach(opt => {
+          if (opt.value === val) found = opt.dataset.id || '';
+        });
+        studentHidden.value = found;
+      });
+
+      // Если пользователь очищает текст, очищаем hidden
+      studentInput.addEventListener('blur', function () {
+        if (!this.value) studentHidden.value = '';
+      });
+    }
+
+    // Кнопка Отмена — безопасно удаляет modal + backdrop
+    const cancelBtn = document.getElementById('assign-cancel');
+    if (cancelBtn) {
+      cancelBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        const backdrop = document.querySelector('.assign-modal-backdrop');
+        const modal = document.querySelector('.assign-modal');
+        if (modal) modal.remove();
+        if (backdrop) backdrop.remove();
+      });
+    }
+  });
+</script>
+

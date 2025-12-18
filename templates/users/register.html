@@ -1,0 +1,112 @@
+{% extends 'base/base_login_register.html' %}
+{% load static %}
+
+{% block title %}Зарегистрироваться{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/register.css' %}">
+{% endblock %}
+
+{% block content %}
+<body class="register__body">
+  <div class="register__container">
+    <div class="register__container-button">
+      <button class="switch-language login-register__button">
+        <img src="{% static 'img/iconify-icons/mynaui_globe.svg' %}" alt="language">Русский
+
+
+    <div class="register__container-main">
+      <p class="register__title">Зарегистрироваться</p>
+
+      <form class="register__form" method="POST">
+        {% csrf_token %}
+        <div class="register__container-fields">
+
+          <div class="register__container-row">
+            <div class="register__form-item">
+            <label for="lastname">Фамилия:</label><br />
+
+            <input class="register__field" type="text" id="lastname" name="surname" /><br />
+            </div>
+
+            <div class="register__form-item">
+              <label for="firstname">Имя:</label><br />
+              <input class="register__field" type="text" id="firstname" name="first_name" /><br />
+            </div>
+
+            <div class="register__form-item">
+              <label for="middlename">Отчество:</label><br />
+              <input class="register__field" type="text" id="middlename" name="patronymic" /><br />
+            </div>
+          </div>
+
+          <div class="register__container-row">
+            <div class="register__form-item">
+              <label for="dateofbirth">Дата рождения:</label><br />
+              <input class="register__field" type="date" id="dateofbirth" name="dateofbirth" /><br />
+            </div>
+
+            <div class="register__form-item">
+              <label for="passport">Номер паспорта:</label><br />
+              <input class="register__field" type="text" id="passport" name="passport_number" /><br />
+            </div>
+
+            <div class="register__form-item">
+              <label for="citizenship">Гражданство:</label><br />
+              <input class="register__field" type="text" id="citizenship" name="citizenship" /><br />
+            </div>
+          </div>
+
+          <div class="register__container-row">
+            <div class="register__form-item">
+              <label for="address">Адрес проживания:</label><br />
+              <input class="register__field" type="text" id="address" name="address" /><br />
+            </div>
+            
+            <div class="register__form-item">
+              <label for="email">Электронная почта:</label><br />
+              <input class="register__field" type="email" id="email" name="email" /><br />
+            </div>
+
+            <div class="register__form-item">
+              <label for="phone">Номер телефона:</label><br />
+              <input class="register__field" type="text" id="phone" name="phone_number" /><br />
+            </div>
+          </div>
+
+        </div>
+
+        <div class="register__container-password">
+          <div class="register__form-item">
+            <label for="password">Пароль:</label><br />
+            <input class="register__field" type="password" id="password" name="password" /><br />
+          </div>
+
+          <div class="register__form-item">
+            <label for="password_confirmation">Подтвердите пароль:</label><br />
+            <input class="register__field" type="password" id="password_confirmation" name="confirm_password" /><br />
+          </div>
+        </div>
+
+        <div class="register__form-lower">
+          <div class="register__form-lower-items">
+            <input class="register__submit" type="submit" value="Зарегистрироваться" />
+            <div class="register__container-links">
+              <a class="register__link" href="{% url 'login' %}">Уже зарегистрированы?</a>
+            </div>
+          </div>
+
+          <div class="register__form-lower-item">
+            <label class="register__personal-data">
+              <input type="checkbox" id="personaldata" name="personaldata" />
+              <span class="register__checkbox-box"></span>
+              Я соглашаюсь на обработку <br />
+               персональных данных
+            </label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+{% endblock %}

@@ -1,0 +1,92 @@
+.profile__container {
+    font-family: 'Cera Pro';
+}
+
+.profile__title {
+    font-size: 3rem;
+}
+
+.profile__row {
+    display: flex;
+    flex-direction: row;
+}
+
+.profile__field {
+    border: none;
+    border-radius: 1.5rem;
+    background-color: var(--color-field);
+    padding: 0.5rem;
+    width: 22.5rem;
+    height: 2.5rem;
+    font-size: 1.5rem;
+    font-family: 'Cera Pro';
+}
+
+.profile__label {
+    font-size: 1.5rem;
+}
+
+.profile__submit-btn {
+    border: none;
+    border-radius: 1rem;
+    color: var(--color-white);
+    background-color: var(--color-red-orange);
+    font-family: 'Cera Pro';
+    font-size: 1.5rem;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+}
+
+.profile__item-container {
+    padding: 0.5rem 1rem;
+}
+
+.profile__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile__interface-language-container {
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-end;
+    align-items: flex-end;
+    padding-right: 2rem;
+    gap: 1rem;
+}
+
+.profile__container-fullname {
+    display: flex;
+    align-items: flex-end;
+}
+
+.profile__language-btn {
+    border: none;
+    background-color: var(--color-cyan);
+    color: var(--color-white);
+    padding: 1rem;
+    font-family: 'Cera Pro';
+    font-size: 1.5rem;
+    border-radius: 1rem;
+}
+
+.profile__language-selector {
+    background-color: var(--color-field);
+    font-size: 1.5rem;
+    font-family: 'Cera Pro';
+    padding: 0.5rem;
+    border-radius: 1rem;
+    border: none;
+}
+
+.profile__container-upper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.profile__rows {
+    align-items: flex-start;
+}

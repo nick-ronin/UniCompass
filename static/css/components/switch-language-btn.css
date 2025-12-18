@@ -1,0 +1,17 @@
+.switch-language {
+    font-family: 'Cera Pro';
+    font-size: 1.5rem;
+    border-radius: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    align-items: center;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.login-register__button {
+    background-color: #197278;
+    padding: 1rem;
+}

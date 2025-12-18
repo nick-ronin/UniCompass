@@ -1,0 +1,75 @@
+{% extends 'base/base_main_student.html' %}
+{% load static %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/student_details.css' %}">
+{% endblock %}
+
+{% block page-name %}Личный кабинет{% endblock %}
+
+{% block content %}
+    <div class="profile__container">
+        <form class="profile__form" method="post">
+            {% csrf_token %}
+            <div class="profile__container-upper">
+                <p class="profile__title">Личная информация</p>
+                <div class="profile__item-container">
+                    <label for="first_name" class="profile__label">Имя:</label> <br />
+                    <input class="profile__field" type="text" id="first_name" name="first_name" value="{{ student.first_name }}"> <br />
+                </div>
+            </div>
+            <div class="profile__rows">
+                <div class="profile__row">
+                    <div class="profile__item-container">
+                        <label for="surname" class="profile__label">Фамилия:</label> <br />
+                        <input class="profile__field" type="text" id="surname" name="surname" value="{{ student.surname }}"> <br />
+                    </div>
+                    <div class="profile__item-container">
+                        <label for="patronymic" class="profile__label">Отчество:</label> <br />
+                        <input class="profile__field" type="text" id="patronymic" name="patronymic" value="{{ student.patronymic }}"> <br />   
+                    </div>             
+                </div>
+                <div class="profile__row">
+                    <div class="profile__item-container">
+                        <label for="passport" class="profile__label">Номер паспорта:</label> <br />
+                        <input class="profile__field" type="text" id="passport" name="passport_number" value="{{ student.passport_number }}"> <br />
+                    </div>
+                    <div class="profile__item-container">
+                        <label for="citizenship" class="profile__label">Гражданство:</label> <br />
+                        <input class="profile__field" type="text" id="citizenship" name="citizenship" value="{{ student.citizenship }}"> <br />     
+                    </div>
+                </div>
+                <div class="profile__row">
+                    <div class="profile__item-container">
+                        <label for="address" class="profile__label">Адрес проживания:</label> <br />
+                        <input class="profile__field" type="text" id="address" name="address" value="{{ student.address }}"> <br />
+                    </div>
+                    <div class="profile__item-container">
+                        <label for="email" class="profile__label">Email:</label> <br />
+                        <input class="profile__field" type="email" id="email" name="email" value="{{ student.email }}"> <br />                    
+                    </div>           
+                </div>
+                <div class="profile__row">
+                    <div class="profile__item-container">
+                        <label for="phone_number" class="profile__label">Номер телефона:</label> <br />
+                        <input class="profile__field" type="text" id="phone_number" name="phone_number" value="{{ student.phone_number }}"> <br />                    
+                    </div>
+                </div>
+            </div>
+            <input type="submit" class="profile__submit-btn" value="Сохранить изменения">
+        </form>
+
+        <div class="profile__interface-language-container">
+            <div class="profile__interface-language-item">
+                <label for="language-switch" class="profile__label">Язык интерфейса:</label>
+                <select class="profile__language-selector" name="profile__language">
+                    <option value="russian">Русский</option>
+                    <option value="english">Английский</option>
+                </select>
+            </div>
+            <button type="submit" class="profile__language-btn">Сохранить</button>
+        </div>
+    </div>
+{% endblock %}

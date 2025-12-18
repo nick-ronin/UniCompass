@@ -1,0 +1,17 @@
+{% extends 'base/base_main_admin.html' %}
+{% load static %}
+
+{% block title %}Главная{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/main_page_admin.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="main-page-admin__container">
+        <h1 class="main-page-admin__title">Добро пожаловать, администратор</h1>
+        <p class="main-page-admin__text">Выберите нужное действие из меню слева для управления системой.</p>
+    </div>
+{% endblock %}
+
+{% block page-name %}Главная{% endblock %}

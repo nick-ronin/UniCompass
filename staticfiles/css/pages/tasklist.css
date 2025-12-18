@@ -1,0 +1,257 @@
+.tasklist__main-container {
+    padding: 2rem 2rem 2rem 100px;
+    margin-left: 80px;
+    font-family: 'Cera Pro', sans-serif;
+    align-items: center;
+    justify-items: center;
+}
+
+.tasklist__container-upper {
+    display: flex;
+    gap: 2rem;
+}
+
+.tasklist__container-smaller {
+    flex: 1;
+}
+
+/* ===== STUDENT CARD ===== */
+.tasklist__student-card {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border: 5px solid var(--color-cyan);
+    border-radius: 2rem;
+    background-color: var(--color-white);
+    margin-bottom: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tasklist__student-card-img {
+    width: 180px;
+    height: auto;
+    object-fit: contain;
+}
+
+.tasklist__student-card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.tasklist__student-name {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.tasklist__student-info {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-text);
+}
+
+.tasklist__label {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* ===== BUTTONS ===== */
+.tasklist__container-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.tasklist__button {
+    flex: 1;
+    padding: 1.5rem;
+    background-color: var(--color-field);
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-family: 'Cera Pro';
+    color: var(--color-text);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tasklist__button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== SECTION TITLES ===== */
+.tasklist__urgent-title,
+.tasklist__other-title {
+    font-size: 2.25rem;
+    color: var(--color-red-orange);
+    margin: 1.5rem 0 1rem 0;
+}
+
+/* Student block wrapper */
+.tasklist__student-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Urgent area */
+.tasklist__urgent-block {
+    border: 4px solid var(--color-red-orange);
+    border-radius: 2rem;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.tasklist__urgent-list {
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+/* Top row grid: left student column and right urgent column */
+.tasklist__top-row {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+}
+
+
+
+/* ===== TASK CARDS ===== */
+.tasklist__card {
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+    padding: 1rem 1.5rem;
+    max-width: 320px;
+}
+
+.tasklist__card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Выполненные задачи - green to cyan gradient */
+.tasklist__card_done {
+    background: linear-gradient(180deg, var(--color-light-green) 0%, var(--color-cyan) 100%);
+    color: var(--color-white);
+}
+
+/* Задачи в процессе - yellow to yellow-orange gradient */
+.tasklist__card_in_progress {
+    background: linear-gradient(180deg, var(--color-yellow) 0%, var(--color-yellow-orange) 100%);
+    color: var(--color-white);
+}
+
+/* Невыполненные задачи - red-orange to deep-red gradient */
+.tasklist__card_not_done {
+    background: linear-gradient(180deg, var(--color-red-orange) 0%, var(--color-deep-red) 100%);
+    color: var(--color-white);
+}
+
+.tasklist__card-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.tasklist__card-description {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.95;
+}
+
+.tasklist__card-deadline {
+    margin: 0;
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+/* Force white text for card content except select and notes */
+.tasklist__card-title,
+.tasklist__card-description,
+.tasklist__card-deadline {
+    color: var(--color-white);
+    font-family: 'Cera Pro', sans-serif;
+}
+
+/* ===== SELECT ===== */
+.tasklist__card-status {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.4rem;
+    background-color: #ffffff;
+    color: var(--color-text);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    font-family: 'Cera Pro', sans-serif;
+}
+
+.tasklist__card-status:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.tasklist__card-status option {
+    background-color: var(--color-field);
+    color: var(--color-text);
+}
+
+/* ===== INPUT NOTES ===== */
+.tasklist__card-notes {
+    padding: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.4rem;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--color-text);
+    font-size: 0.85rem;
+    font-family: 'Cera Pro', sans-serif;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.tasklist__card-notes::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.tasklist__card-notes:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ===== NO TASKS MESSAGES ===== */
+.tasklist__no-urgent,
+.tasklist__no-other {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--color-text);
+    font-style: italic;
+    background-color: var(--color-field);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Grid for other tasks: 4 per row */
+.tasklist__tasks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 3rem;
+    width: 100%;
+    padding-top: 3rem;
+}
+
+/* Colorize select according to bottom gradient color */
+.tasklist__card_done .tasklist__card-status { color: var(--color-cyan); }
+.tasklist__card_in_progress .tasklist__card-status { color: var(--color-yellow-orange); }
+.tasklist__card_not_done .tasklist__card-status { color: var(--color-deep-red); }
+

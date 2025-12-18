@@ -1,0 +1,16 @@
+.main-page-admin__container {
+    padding: 2rem 10rem;
+    font-family: 'Cera Pro';
+}
+
+.main-page-admin__title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.main-page-admin__text {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.6;
+}

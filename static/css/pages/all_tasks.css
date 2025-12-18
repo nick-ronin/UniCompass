@@ -1,0 +1,370 @@
+.all-tasks__container {
+    padding: 2rem 2rem 2rem 100px;
+    margin-left: 80px;
+    font-family: 'Cera Pro';
+    position: relative;
+    min-height: 100vh;
+}
+
+.all-tasks__tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.all-tasks__task-block {
+    background-color: var(--color-field);
+    color: #000;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+.all-tasks__task-block:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.all-tasks__task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.all-tasks__task-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000;
+}
+
+.all-tasks__task-type {
+    display: inline-block;
+    background-color: var(--color-cyan);
+    color: var(--color-white);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+/* Meta column: stacks type and assign button */
+.all-tasks__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.all-tasks__assign-one {
+    background-color: var(--color-red-orange);
+    color: var(--color-white);
+    border: none;
+    padding: 0.4rem 0.75rem;
+    border-radius: 0.5rem;
+    font-family: 'Cera Pro', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.08s ease;
+}
+
+.all-tasks__assign-one:hover {
+    background-color: #a6372c; /* slightly darker */
+    transform: translateY(-1px);
+}
+
+/* Assign modal content (returned by server) */
+.assign-modal {
+    width: 90%;
+    max-width: 620px;
+    background-color: var(--color-white);
+    border-radius: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+    font-family: 'Cera Pro', sans-serif;
+    position: relative;
+    z-index: 2001; /* sit above backdrop */
+}
+
+.assign-modal h3 { margin: 0 0 0.75rem 0; }
+.assign-modal label { font-weight: 600; display:block; margin-top:0.5rem; }
+.assign-modal select, .assign-modal input[type="text"], .assign-modal textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-field);
+    margin-top: 0.25rem;
+    font-family: 'Cera Pro', sans-serif;
+}
+
+.assign-modal button[type="submit"] {
+    background-color: var(--color-red-orange);
+    color: var(--color-white);
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    font-family: 'Cera Pro', sans-serif;
+    font-weight: 600;
+}
+
+.assign-modal button#assign-cancel { margin-left: 0.5rem; }
+
+/* Backdrop for assign modal (50% opacity) */
+.assign-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 2000; /* below modal, above page */
+}
+
+/* submit/cancel colors per request */
+.assign-submit {
+    background-color: var(--color-cyan);
+    color: var(--color-white);
+}
+.assign-cancel {
+    background-color: var(--color-red-orange);
+    color: var(--color-white);
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 0.6rem;
+    cursor: pointer;
+}
+
+.all-tasks__task-description {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+.all-tasks__empty-message {
+    text-align: center;
+    color: #999;
+    font-size: 1.1rem;
+    padding: 2rem;
+}
+
+/* Create button in bottom-right corner */
+.all-tasks__create-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-red-orange);
+    color: var(--color-white);
+    border: none;
+    border-radius: 50%;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    z-index: 100;
+}
+
+.all-tasks__create-btn:hover {
+    background-color: var(--color-cyan);
+    transform: scale(1.1);
+}
+
+.all-tasks__create-btn:active {
+    transform: scale(0.95);
+}
+/* Modal styles */
+.all-tasks__modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+.all-tasks__modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.all-tasks__modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.all-tasks__modal-content {
+    position: relative;
+    z-index: 2;
+    background-image: url("../../img/LoginContainer.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 2rem;
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.all-tasks__modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    position: relative;
+}
+
+.all-tasks__modal-title {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #000;
+    font-family: 'Cera Pro';
+}
+
+.all-tasks__modal-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #000;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.all-tasks__modal-close:hover {
+    color: var(--color-red-orange);
+}
+
+.all-tasks__modal-form {
+    padding: 0 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-family: 'Cera Pro';
+}
+
+.all-tasks__form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.all-tasks__form-label {
+    font-size: 1.25rem;
+    color: #000;
+    font-weight: 500;
+}
+
+.all-tasks__form-field {
+    border: none;
+    background-color: var(--color-field);
+    border-radius: 1rem;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-family: 'Cera Pro';
+}
+
+.all-tasks__form-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.all-tasks__form-checkbox-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.all-tasks__form-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    color: #000;
+    cursor: pointer;
+}
+
+.all-tasks__form-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--color-cyan);
+}
+
+/* Custom checkbox styling */
+.all-tasks__form-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    color: #000;
+    cursor: pointer;
+}
+
+.all-tasks__form-checkbox {
+    display: none;
+}
+
+.all-tasks__form-checkbox-box {
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--color-cyan);
+    border-radius: 8px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.all-tasks__form-checkbox-label .all-tasks__form-checkbox:checked + .all-tasks__form-checkbox-box {
+    background-color: var(--color-cyan);
+    border-color: var(--color-cyan);
+}
+
+.all-tasks__form-checkbox-label .all-tasks__form-checkbox:checked + .all-tasks__form-checkbox-box::after {
+    border-color: var(--color-white);
+}
+
+.all-tasks__form-checkbox-box::after {
+    content: '';
+    width: 12px;
+    height: 24px;
+    border-right: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    transform: rotate(45deg);
+    position: absolute;
+    top: -1px;
+    left: 8px;
+}
+
+.all-tasks__modal-submit {
+    background-color: var(--color-red-orange);
+    border: none;
+    color: var(--color-white);
+    font-size: 1.25rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-family: 'Cera Pro';
+    transition: background-color 0.2s ease;
+    align-self: center;
+    margin-top: 1rem;
+}
+
+.all-tasks__modal-submit:hover {
+    background-color: var(--color-cyan);
+}
